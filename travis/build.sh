@@ -27,5 +27,4 @@ case $VERSION in
     fi;;
 esac 
 
-
-docker build -f ${DOCKERFILE} ${VERSION_TYPE_TAG} ${VERSION_TAG} --no-cache --force-rm .
+travis_wait 30 docker build -f ${DOCKERFILE} ${VERSION_TYPE_TAG} ${VERSION_TAG} --no-cache --force-rm .
