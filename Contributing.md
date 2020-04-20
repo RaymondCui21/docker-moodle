@@ -8,6 +8,10 @@ As you noticed there are the following `docker-compose.yml` files:
 * The `docker-compose-apache.yml` Used in testing the apacke-based-images.
 * Τhe `docker-compose-ssl-reverse-nginx.yml` used for testing the moodle's behavior againist a nginx reverse proxy.
 
+Each of the files above are located in the following subfolders located in `./compose` fodler. The subfolders are:
+- `./compose/latest` That is use to test the latest moodle images.
+- `./compose/lts` That is udsed to test the lts version of the moodle images.
+
 ## Something wrong happens during container launch:
 Then run the following commands:
 
