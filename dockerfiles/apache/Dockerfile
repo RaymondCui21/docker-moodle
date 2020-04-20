@@ -26,7 +26,6 @@ ENV DEBIAN_FRONTEND noninteractive \
 
 COPY ./scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
 
-
 RUN echo "Build moodle version ${VERSION}" &&\
 	chmod +x /usr/local/bin/entrypoint.sh &&\
 	apt-get update && \
@@ -36,16 +35,24 @@ RUN echo "Build moodle version ${VERSION}" &&\
      	docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql &&\
         docker-php-ext-install pdo pgsql pdo_pgsql; \ 
 	fi &&\
+	echo "Install Dependencies From Package mnagaer" &&\
 	apt-get -f -y install --no-install-recommends rsync unzip netcat libxmlrpc-c++8-dev libxml2-dev libpng-dev libicu-dev libmcrypt-dev libzip-dev &&\
- 	docker-php-ext-install xmlrpc && \
+	echo "Install XMLRpc" &&\
+	docker-php-ext-install xmlrpc && \
+	echo "Install mbstring" &&\
 	docker-php-ext-install mbstring && \
-	whereis libzip &&\
+	echo "Install zip" &&\
 	docker-php-ext-configure zip --with-libzip=/usr/lib/x86_64-linux-gnu/libzip.so &&\
 	docker-php-ext-install zip && \
+	echo "Install xml" &&\
 	docker-php-ext-install xml && \
+	echo "Install intl" &&\
 	docker-php-ext-install intl && \
+	echo "Install soap" &&\
  	docker-php-ext-install soap && \
+	echo "Install gd" &&\ 
 	docker-php-ext-install gd && \
+	echo "Install opcache" &&\
 	docker-php-ext-install opcache && \
 	echo "Installing moodle" && \
 	curl https://download.moodle.org/download.php/direct/stable${VERSION}/moodle-latest-${VERSION}.zip -o /tmp/moodle-latest.zip  && \

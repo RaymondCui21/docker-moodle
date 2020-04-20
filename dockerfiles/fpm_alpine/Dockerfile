@@ -36,13 +36,21 @@ RUN \
 			apk add --update postgresql-dev &&\
 		    docker-php-ext-install pdo pgsql pdo_pgsql;\
 		fi &&\
+		echo "Install Dependencies From Package mnagaer" &&\
 		apk add --update curl bash rsync unzip netcat-openbsd libxml2-dev icu-dev libmcrypt-dev libpng-dev libjpeg-turbo-dev libzip-dev &&\
- 		docker-php-ext-install xmlrpc && \
+ 		echo "Install XMLRpc" &&\
+		docker-php-ext-install xmlrpc && \
+		echo "Install mbstring" &&\
 		docker-php-ext-install mbstring && \
+		echo "Install zip" &&\
 		docker-php-ext-install zip && \
+		echo "Install intl" &&\
 		docker-php-ext-install intl && \
+		echo "Install soap" &&\
  		docker-php-ext-install soap && \
+		echo "Install gd" &&\ 
 		docker-php-ext-install gd && \
+		echo "Install opcache" &&\
 		docker-php-ext-install opcache && \
 		echo "Installing moodle" && \
 		curl https://download.moodle.org/download.php/direct/stable${VERSION}/moodle-latest-${VERSION}.zip -o /tmp/moodle-latest.zip  && \
