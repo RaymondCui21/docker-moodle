@@ -33,6 +33,19 @@ env:
     - "DB_TYPE=mysqli VERSION=38 DOCKERFILE=dockerfiles/fpm_alpine/Dockerfile"
     - "DB_TYPE=pgsql VERSION=38 DOCKERFILE=dockerfiles/fpm_alpine/Dockerfile"
 
+install:
+  - docker pull php:7.2-apache
+  - docker save php:7.2-apache | gzip > docker/php:7.2-apache.tar.gz
+  - docker pull php:7.2-fpm-alpine
+  - docker save php:7.2-fpm-alpine | gzip > docker/php:7.2-fpm-alpine.tar.gz
+cache:
+  directories:
+  - docker  
+
+before_script:
+  - gzip -dc docker/php:7.2-apache.tar.gz | docker load
+  - gzip -dc docker/php:7.2-apache.tar.gz | docker load
+
 script: bash ./travis/build.sh
 
 deploy:
