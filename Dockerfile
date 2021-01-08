@@ -1,7 +1,7 @@
 FROM  php:7.2-apache
 
 # Replace for later version
-ARG VERSION=37
+ARG VERSION=39
 ARG	DB_TYPE="all"
 
 VOLUME ["/var/moodledata"]
