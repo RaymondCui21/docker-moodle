@@ -63,6 +63,7 @@ COPY ./scripts/moodle-config.php /usr/src/moodle/config.php
 COPY ./scripts/detect_mariadb.php /opt/detect_mariadb.php
 
 COPY ./scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY ./scripts/apache2.conf /etc/apache2/
 
 RUN chown root:root /usr/local/bin/entrypoint.sh &&\
 	chmod +x /usr/local/bin/entrypoint.sh
